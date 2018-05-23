@@ -6,24 +6,33 @@ from draw import *
 """======== first_pass( commands, symbols ) ==========
   Checks the commands array for any animation commands
   (frames, basename, vary)
+
   Should set num_frames and basename if the frames
   or basename commands are present
+
   If vary is found, but frames is not, the entire
   program should exit.
+
   If frames is found, but basename is not, set name
   to some default value, and print out a message
   with the name being used.
   ==================== """
 def first_pass( commands ):
-    if (commands.has_key("frames") or commands.has_key("basename")
-            or commands.has_key("vary")):
-        if (commands.has_key("vary") and !commands.has_key(
-        "frames")):
-            return
-        if (commands.has_key("frames") and !commands.has_key("basename")):
-            commands["basename"] = "default_name"
-            commands["frames"] = "
-            print "basename is:"+ commands["basename"]
+    for command in commands:
+        #int num_frames
+        #char basename[128]
+        if (command.has_key("frames") or command.has_key("basename")
+                or command.has_key("vary")):
+            if (command.has_key("frames") and command.has_key("basename")):
+                command["frames"] = num_frames
+                command["basename"] = basename
+            if (command.has_key("vary") and !command.has_key("frames")):
+                print "Vary is found, but frames is not"
+                return
+            if (command.has_key("frames") and !command.has_key("basename")):
+                p_command_basename(command)
+                p_command_frames(command)
+                print "basename is:" + command["basename"]
     
 
 """======== second_pass( commands ) ==========
@@ -32,15 +41,28 @@ def first_pass( commands ):
   this by using an array of dictionaries. Each array index
   will correspond to a frame (eg. knobs[0] would be the first
   frame, knobs[2] would be the 3rd frame and so on).
+
   Each index should contain a dictionary of knob values, each
   key will be a knob name, and each value will be the knob's
   value for that frame.
+
   Go through the command array, and when you find vary, go
   from knobs[0] to knobs[frames-1] and add (or modify) the
   dictionary corresponding to the given knob with the
   appropirate value.
   ===================="""
 def second_pass( commands, num_frames ):
+    #calculate knob value for every frame
+    #store values
+    #check/catch errors
+    #returns an array
+    knobs =[]
+    for command in commands:
+        if (command.has_key("vary")):
+            for i in (0, num_frames):
+                #store knob values
+                #knob[i]
+            
     pass
 
 
