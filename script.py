@@ -56,14 +56,15 @@ def second_pass( commands, num_frames ):
     #store values
     #check/catch errors
     #returns an array
-    knobs =[]
+    knobs ={}
     for command in commands:
         if (command.has_key("vary")):
             for i in (0, num_frames):
-                #store knob values
+                knobs["knob["+i+"]"] = symbols[i]
+                #store knob values from symbol table
                 #knob[i]
             
-    pass
+    return knobs
 
 
 def run(filename):
