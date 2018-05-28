@@ -403,7 +403,6 @@ def parseFile(filename):
             line = line.strip()
             yacc.parse(line)
         f.close()
-        
         result = (commands[:], deepcopy(symbols))
         commands = []
         symbols = {}
