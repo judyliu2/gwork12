@@ -82,7 +82,8 @@ def second_pass( commands, num_frames ):
 
             current_val = vstart
             for i in range (int(fstart),int(fend+1)):
-                vary_node[i][knob] = vstart+ d * (i-fstart)
+                knob_value = vstart+ d * (i-fstart)
+                vary_node[i][knob] = knob_value
                 
     return vary_node
 
@@ -124,7 +125,7 @@ def run(filename):
     consts = ''
     coords = []
     coords1 = []
-    kc = 1
+    kc = 1 #knob constant/value
 
     p = mdl.parseFile(filename)
     
@@ -137,6 +138,7 @@ def run(filename):
     (basename, num_frames) = first_pass(commands)
     vary_node  = second_pass(commands, num_frames)
 
+    #setting symbol values from vary_node
     for i in range(int(num_frames)):
         for knob in vary_node[i]:
             symbols[knob][1] = vary_node[i][knob]
@@ -236,6 +238,7 @@ def run(filename):
         zbuffer = new_zbuffer()
         tmp = []
         step_3d = 20
+        kc = 1
 
     if num_frames >1:
         make_animation(basename)
